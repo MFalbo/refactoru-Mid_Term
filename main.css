@@ -15,7 +15,7 @@
 -------------------------------------------------------------- */
 	body {
 		/*font-family: 'Cardo',Arial,sans-serif;*/
-		background:url(http://www.bluesdream.com/case/css3/3d-book-showcase/images/body_bg.jpg);
+		background:url(little_pluses/little_pluses.png); /*background found @ subtlepatterns.com*/
 	}
 	/*.txt-right{
 		text-align:right;
@@ -26,7 +26,7 @@
 		margin:30px 0 44px 0;
 		text-shadow:0 2px 4px rgba(41,48,58,0.3); 
 	}*/
-
+s
 	.container{
 		/*margin: 0 auto;*/
 		width: 95%;
@@ -278,16 +278,33 @@
 
 /* = Order
 -------------------------------------------------------------- */
-	.book-cover:after,.book-back:after{
+	.book-cover:after{
 		content:"";
 		width:3px;
-		position:absolute; top:0; left:10px; bottom:0;
+		position:absolute; 
+		top:0; 
+		left:10px; 
+		bottom:0;
 		background:rgba(0,0,0,0.06);
 		box-shadow:1px 0 3px rgba(255, 255, 255, 0.1);
 	}
+
+	.book-back:after{
+		content:"";
+		width:3px;
+		position:absolute; 
+		top:0; 
+		right:10px; 
+		bottom:0;
+		background:rgba(0,0,0,0.06);
+		box-shadow:1px 0 3px rgba(255, 255, 255, 0.1);
+	}
+
+
 	.book-page,.book-top,.book-right,.book-bottom{
 		background:#EEEFE9;
 	}
+
 	.book-right{
 		width:50px; height:550px;
 		position:absolute; top:5px; right:-20px;
@@ -298,6 +315,7 @@
 		-o-transform:rotate3d(0,1,0,90deg);
 		transform:rotate3d(0,1,0,90deg);
 	}
+
 	.book-top{
 		width:415px; height:50px;
 		position:absolute; top:-20px; left:0;
@@ -307,6 +325,7 @@
 		-o-transform:rotate3d(1,0,0,90deg);
 		transform:rotate3d(1,0,0,90deg);
 	}
+
 	.book-bottom{
 		width:415px; height:50px;
 		position:absolute; bottom:-20px; left:0;
@@ -316,6 +335,7 @@
 		-o-rotate3d(1,0,0,-90deg) translate3d(0,0,0);
 		rotate3d(1,0,0,-90deg) translate3d(0,0,0);
 	}
+
 	.book-right,.book-top,.book-bottom{
 		-webkit-backface-visibility:hidden;
 		-moz-backface-visibility:hidden;
@@ -416,8 +436,11 @@
 	}
 	#opt:after{
 		content:"";
-		width:105%; height:104%;
-		position:absolute; top:-4%; left:-5%;
+		width:105%; 
+		height:104%;
+		position:absolute; 
+		top:-4%; 
+		left:-5%;
 		border:4px solid rgba(255,255,255,0.3);
 		z-index:-1;
 	}
