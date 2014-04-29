@@ -147,11 +147,28 @@ $('#view-rotate').click(function(){
   	}
   });
 
+
+  // search function
+	var search = function(criteria){
+		var searchArray = [];
+	  	for(var i=0; i < bookArray.length; i++){
+	  		// console.log($(this).find('#search-field').val().toLowerCase());
+	  		// console.log(bookArray[i]);
+	  		for(var key in bookArray[i]){
+	  			// console.log(bookArray[i][key]);
+	  			if(bookArray[i][key].toLowerCase() === criteria.toLowerCase()){
+	  				searchArray.push(bookArray[i]);
+	  				// console.log(bookArray[i]);
+	  			}
+
+	  		} 
+	  	}
+	  	return searchArray;
+	};
+
   // display search results in a modal
   var searchModal = function(arr){
 	  	$('.modal-body').empty();
-
-
 	  	// for(var i=0; i<arr.length; i++){
 	  	// 	for(var key in arr[i]){
 	  	// 		var prop = $('<h2>' + arr[i][key] + '</h2>');
@@ -160,38 +177,32 @@ $('#view-rotate').click(function(){
 	  	// }
 	  	arr.map(function(obj){
 	  		for(var key in obj){
-	  			var prop = $('<h4>' + key.toUpperCase() + ': <a href="#">' + obj[key] + '</a></h4>');
+	  			var prop = $('<h4>' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h4>');
 	  			$('.modal-body').append(prop);
 	  		}
 	  	});
-
   	};
 
   
 
   $(document).on('submit', '#search-bar', function(){
-  	// console.log('submitted');
-  	var searchArray = [];
-  	for(var i=0; i < bookArray.length; i++){
-  		// console.log($(this).find('#search-field').val().toLowerCase());
-  		// console.log(bookArray[i]);
-  		for(var key in bookArray[i]){
-  			// console.log(bookArray[i][key]);
-  			if(bookArray[i][key].toLowerCase() === $(this).find('#search-field').val().toLowerCase()){
-  				searchArray.push(bookArray[i]);
-  				// console.log(bookArray[i]);
-  			}
-
-  		} 
-  	}
-	searchModal(searchArray);
+  	var criteria = $(this).find('#search-field').val()
+  	var results = search(criteria);
+	searchModal(results);
 	$(this).find('#search-field').val('');
 	$('#myModal').modal('show');
-	
+
   	return false;
   });
 
 
+	$(document).on('click','.search-criteria', function(){
+		var newCriteria = $(this).text();
+		var results = search(newCriteria);
+		searchModal(results);
+		$('#myModal').modal('show');
+
+	});
 
 
 
