@@ -147,21 +147,47 @@ $('#view-rotate').click(function(){
   	}
   });
 
+  // display search results in a modal
+  var searchModal = function(arr){
+	  	$('.modal-body').empty();
+
+
+	  	// for(var i=0; i<arr.length; i++){
+	  	// 	for(var key in arr[i]){
+	  	// 		var prop = $('<h2>' + arr[i][key] + '</h2>');
+	  	// 		$('.modal-body').append(prop);
+	  	// 	}
+	  	// }
+	  	arr.map(function(obj){
+	  		for(var key in obj){
+	  			var prop = $('<h4>' + key.toUpperCase() + ': <a href="#">' + obj[key] + '</a></h4>');
+	  			$('.modal-body').append(prop);
+	  		}
+	  	});
+
+  	};
+
+  
+
   $(document).on('submit', '#search-bar', function(){
   	// console.log('submitted');
+  	var searchArray = [];
   	for(var i=0; i < bookArray.length; i++){
   		// console.log($(this).find('#search-field').val().toLowerCase());
   		// console.log(bookArray[i]);
   		for(var key in bookArray[i]){
   			// console.log(bookArray[i][key]);
   			if(bookArray[i][key].toLowerCase() === $(this).find('#search-field').val().toLowerCase()){
-  				console.log(bookArray[i]);
-  				$(this).find('#search-field').val('');
+  				searchArray.push(bookArray[i]);
+  				// console.log(bookArray[i]);
   			}
 
   		} 
   	}
-
+	searchModal(searchArray);
+	$(this).find('#search-field').val('');
+	$('#myModal').modal('show');
+	
   	return false;
   });
 
