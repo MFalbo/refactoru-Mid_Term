@@ -166,36 +166,30 @@ $('#view-rotate').click(function(){
 	  	return searchArray;
 	};
 
-  // display search results in a modal
+  // display search results in a modal.   ROOM FOR DISPLAY IMPROVEMENTS
   var searchModal = function(arr){
 	  	$('.modal-body').empty();
-	  	// for(var i=0; i<arr.length; i++){
-	  	// 	for(var key in arr[i]){
-	  	// 		var prop = $('<h2>' + arr[i][key] + '</h2>');
-	  	// 		$('.modal-body').append(prop);
-	  	// 	}
-	  	// }
 	  	arr.map(function(obj){
 	  		for(var key in obj){
-	  			var prop = $('<h4>' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h4>');
+	  			var prop = $('<h5>' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h5>');
 	  			$('.modal-body').append(prop);
 	  		}
 	  	});
   	};
 
   
+  	// Search through 'database' of books using search bar and display results in a modal box
+	  $(document).on('submit', '#search-bar', function(){
+	  	var criteria = $(this).find('#search-field').val()
+	  	var results = search(criteria);
+		searchModal(results);
+		$(this).find('#search-field').val('');
+		$('#myModal').modal('show');
 
-  $(document).on('submit', '#search-bar', function(){
-  	var criteria = $(this).find('#search-field').val()
-  	var results = search(criteria);
-	searchModal(results);
-	$(this).find('#search-field').val('');
-	$('#myModal').modal('show');
+	  	return false;
+	  });
 
-  	return false;
-  });
-
-
+	  // Do new search based off of clicked data in original search modal box
 	$(document).on('click','.search-criteria', function(){
 		var newCriteria = $(this).text();
 		var results = search(newCriteria);
