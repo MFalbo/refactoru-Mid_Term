@@ -22,14 +22,10 @@
 		margin:30px 0 44px 0;
 		text-shadow:0 2px 4px rgba(41,48,58,0.3); 
 	}*/
-s
+
 	.container{
 		width: 95%;
 		margin-bottom: 20px;
-	}
-	.center{
-
-
 	}
 
 	#book {
@@ -68,8 +64,11 @@ s
 -------------------------------------------------------------- */
 	.book-front{
 		width:420px; height:560px;
-		position:absolute; top:0; bottom:0;
-		font-size:15px; text-align:center;
+		position:absolute; 
+		top:0; 
+		bottom:0;
+		font-size:15px; 
+		text-align:center;
 		text-shadow:0 2px 0 rgba(30,35,45,1);
 		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
 		z-index:10;
@@ -100,7 +99,9 @@ s
 	.book-cover{
 		width:420px; height:560px;
 		overflow:hidden;
-		position:absolute; top:0; bottom:0;
+		position:absolute; 
+		top:0; 
+		bottom:0;
 		background: #29303A url(Front_Cover.jpg) 0 0 no-repeat;
 		background-size: 420px 560px;
 		-webkit-transform-style:preserve-3d;
@@ -117,8 +118,11 @@ s
 	}
 	.book-cover-back{
 		width:420px; height:560px;
-		position:absolute; top:0; bottom:0;
-		background:#E6E3E3;
+		position:absolute; 
+		top:0; 
+		bottom:0;
+		background:#E6E3E3 url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=6);
+		background-size: 420px 560px;
 		-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
 		-ms-transform-style:preserve-3d;
@@ -188,11 +192,11 @@ s
 	}
 
 	.page{
-		height:500px;
-		margin:30px 40px;
+		height:550px;
+		/*margin:30px 40px;*/
 		overflow:hidden;
 	}
-	.book-page h3{
+/*	.book-page h3{
 		font-size:14px;
 		text-align:center;
 		margin-bottom:14px;
@@ -207,21 +211,47 @@ s
 		text-align:center;
 		position:absolute;
 		bottom:10px;
-	}
+	}*/
 
 	#page-1{
 		/*z-index: 9;*/
-		background: #29303A url(Pages.jpg) 0 0 no-repeat;
-		background-size: 830px 550px;
+		background: #29303A url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=7) 0 0 no-repeat;
+		background-size: 415px 550px;
 	}
 
-/*	#page-2{
-		z-index: 8;
-	}*/
+	#page-1-back{
+		background: url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=8);
+		background-size: 415px 550px;
+	}
+
+	#page-2{
+		background: url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=9);
+		background-size: 415px 550px;
+		
+	}
+
+	#page-2-back{
+		background: url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=10);
+		background-size: 415px 550px;
+		
+	}
+
+	#page-3{
+		background: url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=12);
+		background-size: 415px 550px;
+
+	}
+
+	#page-3-back{
+		background: url(http://insight.randomhouse.com/fullpage.do?pContentType=JPG&pName=fullpage&pISBN=9780394823379&pPageID=13);
+		background-size: 415px 550px;
+
+	}
 
 	.book-page-back{
 		background-color: #29303A;
-		width:415px; height:550px;
+		width:415px; 
+		height:550px;
 		line-height:20px;
 		position:absolute; 
 		top:5px;
@@ -525,7 +555,6 @@ s
 
 
 .page-flip{
-	/*z-index: 50;*/
 
 	-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
@@ -554,7 +583,7 @@ s
 
 }
 
-/*.page-flip .book-page-back*/ .visible-back-page{
+.visible-back-page{
 
 		-webkit-transform:translate3d(0,-8px,-5px) rotate3d(0,1,0, 180deg);
 		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
@@ -563,23 +592,6 @@ s
 		transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
 
 }
-
-/*#page-2-back{
-	-webkit-transform:translate3d(0,-8px,-6px);
-}*/
-
-#page-3-back{
-	/*-webkit-transform:translate3d(0,-8px,-7px);*/
-	z-index: -30;
-	
-}
-
-
-
-
-/*	.right, .left, .center{
-		border: 1px solid black;
-	}*/
 
 	.right, .left{
 		visibility: hidden;
