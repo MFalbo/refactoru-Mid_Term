@@ -1,3 +1,46 @@
+// Class Constructors
+var Book = function(title, author, genre){
+	this.title = title;
+	this.author = author;
+	this.genre = genre;
+}
+
+var bookArray = [];
+
+// Create new instances of books
+var theLorax = new Book('The Lorax', 'Dr. Seuss', 'Children');
+var alexander = new Book('Alexander and the Terrible, Horrible, No Good, Very Bad Day', 'Judith Viorst', 'Children');
+var borrowers = new Book('The Borrowers', 'Mary Norton', 'Children');
+var catHat = new Book('The Cat in the Hat', 'Dr. Seuss', 'Children');
+var charlotte = new Book('Charlotte\'s Web', 'E.B. White', 'Children');
+var corduroy = new Book('Corduroy', 'Don Freeman', 'Children');
+var frogToad = new Book('Frog and Toad Are Friends', 'Arnold Lobel', 'Children');
+var goodnightMoon = new Book('Goodnight Moon', 'Margaret Wise Brown', 'Children');
+var phantomTollbooth = new Book('The Phantom Tollbooth', 'Norton Juster', 'Children');
+var pippiLongstocking = new Book('Pippi Longstocking', 'Astrid Lindgren', 'Children');
+var ferdinand = new Book('The Story of Ferdinand', 'Munro Leaf', 'Children');
+var hungryCaterpillar = new Book('The Very Hungry Caterpillar', 'Eric Carle', 'Children');
+var wildThings = new Book('Where the Wild Things Are', 'Maurice Sendak', 'Children');
+var pooh = new Book('Winnie-the-Pooh', 'A.A. Milne', 'Children');
+
+// push books to array
+bookArray.push(theLorax);
+bookArray.push(alexander);
+bookArray.push(borrowers);
+bookArray.push(catHat);
+bookArray.push(charlotte);
+bookArray.push(corduroy);
+bookArray.push(frogToad);
+bookArray.push(goodnightMoon);
+bookArray.push(phantomTollbooth);
+bookArray.push(pippiLongstocking);
+bookArray.push(ferdinand);
+bookArray.push(hungryCaterpillar);
+bookArray.push(wildThings);
+bookArray.push(pooh);
+
+
+
 $(document).on('ready', function() {
 
   // Start Copied Code
@@ -102,6 +145,24 @@ $('#view-rotate').click(function(){
   	else{
   		$('.left, .right').css('visibility', 'hidden');
   	}
+  });
+
+  $(document).on('submit', '#search-bar', function(){
+  	// console.log('submitted');
+  	for(var i=0; i < bookArray.length; i++){
+  		// console.log($(this).find('#search-field').val().toLowerCase());
+  		// console.log(bookArray[i]);
+  		for(var key in bookArray[i]){
+  			// console.log(bookArray[i][key]);
+  			if(bookArray[i][key].toLowerCase() === $(this).find('#search-field').val().toLowerCase()){
+  				console.log(bookArray[i]);
+  				$(this).find('#search-field').val('');
+  			}
+
+  		} 
+  	}
+
+  	return false;
   });
 
 
