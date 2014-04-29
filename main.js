@@ -5,6 +5,7 @@ var Book = function(title, author, genre){
 	this.genre = genre;
 }
 
+// Initialize empty book array
 var bookArray = [];
 
 // Create new instances of books
@@ -40,22 +41,23 @@ bookArray.push(wildThings);
 bookArray.push(pooh);
 
 
-
+// All jQuery DOM construction and event handlers
 $(document).on('ready', function() {
 
-  // Start Copied Code
-  $(function(){
+  // View Front Cover by clicking button
+  // $(function(){
 	var book = $('#book');
 	$('#view-cover').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-cover');
 	});
+	
 	$('#view-back').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-back');
 	});
 
-	// Open/Close Book event handlers
+// Open/Close Book event handlers
 
 	// Open/close book with button
 	$('#open-book').click(function(){
@@ -117,9 +119,7 @@ $('#view-rotate').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-rotate');
 	});
-});
-
-  // End Copied Code
+// });
 
 
 // Pop-up footer event handler
@@ -197,9 +197,6 @@ $('#view-rotate').click(function(){
 		$('#myModal').modal('show');
 
 	});
-
-
-
 });
 
 
