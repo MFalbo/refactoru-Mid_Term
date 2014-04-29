@@ -28,14 +28,11 @@
 	}*/
 s
 	.container{
-		/*margin: 0 auto;*/
 		width: 95%;
 		margin-bottom: 20px;
 	}
 	.center{
-		/*height: 100%;*/
-		/*position: relative;*/
-		/*padding-top: 60px;*/
+
 
 	}
 
@@ -71,9 +68,9 @@ s
 		transition-duration: .5s;
 	}
 
-/* = Book Font
+/* = Book Front
 -------------------------------------------------------------- */
-	.book-font{
+	.book-front{
 		width:420px; height:560px;
 		position:absolute; top:0; bottom:0;
 		font-size:15px; text-align:center;
@@ -108,7 +105,6 @@ s
 		width:420px; height:560px;
 		overflow:hidden;
 		position:absolute; top:0; bottom:0;
-		/*background:#29303A url(http://www.bluesdream.com/case/css3/3d-book-showcase/images/img.jpg) 0 200px no-repeat;*/
 		background: #29303A url(Front_Cover.jpg) 0 0 no-repeat;
 		background-size: 420px 560px;
 		-webkit-transform-style:preserve-3d;
@@ -126,7 +122,7 @@ s
 	.book-cover-back{
 		width:420px; height:560px;
 		position:absolute; top:0; bottom:0;
-		background:#29303A;
+		background:#E6E3E3;
 		-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
 		-ms-transform-style:preserve-3d;
@@ -163,9 +159,11 @@ s
 /* = Book Page
 -------------------------------------------------------------- */
 	.book-page{
-		width:415px; height:550px;
+		width:415px; 
+		height:550px;
 		line-height:20px;
-		position:absolute; top:5px;
+		position:absolute; 
+		top:5px;
 		z-index:9;
 		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
 		-webkit-transform-style:preserve-3d;
@@ -175,17 +173,24 @@ s
 		transform-style:preserve-3d;
 
 		-webkit-transition-duration:.5s;
-		-moz-transform-style:preserve-3d;
-		-ms-transform-style:preserve-3d;
-		-o-transform-style:preserve-3d;
-		transform-style:preserve-3d;
+		-moz-transition-duration:.5s;
+		-ms-transition-duration:.5s;
+		-o-transition-duration:.5s;
+		transition-duration:.5s;
 
 		-webkit-transform:translate3d(0,0,24px);
 		-moz-transform:translate3d(0,0,24px);
 		-ms-transform:translate3d(0,0,24px);
 		-o-transform:translate3d(0,0,24px);
 		transform:translate3d(0,0,24px);
+
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;
+		-o-backface-visibility:hidden;
+		backface-visibility:hidden;
 	}
+
 	.page{
 		height:500px;
 		margin:30px 40px;
@@ -213,6 +218,44 @@ s
 		background-size: 830px 550px;
 	}
 
+	.book-page-back{
+		background-color: #29303A;
+		width:415px; height:550px;
+		line-height:20px;
+		position:absolute; 
+		top:5px;
+		/*z-index:10;*/
+		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
+		-webkit-transform-style:preserve-3d;
+		-moz-transform-style:preserve-3d;
+		-ms-transform-style:preserve-3d;
+		-o-transform-style:preserve-3d;
+		transform-style:preserve-3d;
+
+		-webkit-transition-duration:.5s;
+		-moz-transition-duration:.5s;
+		-ms-transition-duration:.5s;
+		-o-transition-duration:.5s;
+		transition-duration:.5s;
+
+		-webkit-transform:translate3d(0,0,24px);
+		-moz-transform:translate3d(0,0,24px);
+		-ms-transform:translate3d(0,0,24px);
+		-o-transform:translate3d(0,0,24px);
+		transform:translate3d(0,0,24px);
+
+		-webkit-transform:rotate3d(0,1,0,-160deg);
+		-moz-transform:rotate3d(0,1,0,-180deg);
+		-ms-transform:rotate3d(0,1,0,-180deg);
+		-o-transform:rotate3d(0,1,0,-180deg);
+		transform:rotate3d(0,1,0,-180deg);
+
+		-webkit-backface-visibility:hidden;
+		-moz-backface-visibility:hidden;
+		-ms-backface-visibility:hidden;
+		-o-backface-visibility:hidden;
+		backface-visibility:hidden;
+	}
 /* = Book Back
 -------------------------------------------------------------- */
 	.book-back{
@@ -262,6 +305,8 @@ s
 		height:50px; line-height:50px;
 		font-size:14px; text-align:right;
 		padding:0 15px;
+		/*Sets the initial position of the element prior to rotation and translation
+		without the origin placement the heading will not appear attached to the 'spine' of the book*/
 		-webkit-transform-origin:0 0;
 		-moz-transform-origin:0 0;
 		-ms-transform-origin:0 0;
@@ -274,7 +319,7 @@ s
 		-o-transform:rotate(90deg) translateY(-50px);
 		transform:rotate(90deg) translateY(-50px);
 	}
-	.book-bone span{ font-size:14px; padding-right:20px;}
+	/*.book-bone span{ font-size:14px; padding-right:20px;}*/
 
 /* = Order
 -------------------------------------------------------------- */
@@ -318,7 +363,9 @@ s
 
 	.book-top{
 		width:415px; height:50px;
-		position:absolute; top:-20px; left:0;
+		position:absolute; 
+		top:-20px; 
+		left:0;
 		-webkit-transform:rotate3d(1,0,0,90deg);
 		-moz-transform:rotate3d(1,0,0,90deg);
 		-ms-transform:rotate3d(1,0,0,90deg);
@@ -328,7 +375,9 @@ s
 
 	.book-bottom{
 		width:415px; height:50px;
-		position:absolute; bottom:-20px; left:0;
+		position:absolute; 
+		bottom:-20px; 
+		left:0;
 		-webkit-transform:rotate3d(1,0,0,-90deg) translate3d(0,0,0);
 		-moz-rotate3d(1,0,0,-90deg) translate3d(0,0,0);
 		-ms-rotate3d(1,0,0,-90deg) translate3d(0,0,0);
@@ -377,20 +426,24 @@ s
 		-o-transform:translate3d(50%,0,0);
 		transform:translate3d(50%,0,0);
 	}
-	.open-book  .book-font{
+	.open-book  .book-front{
 		-webkit-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		-ms-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 	}
+	
+/*Controls the rotation of the book on hover when the book is in open state (i.e. #book has class open-book)*/
 	.open-book:hover .main{
-		-webkit-transform:rotate3d(1,1,0,15deg);
-		-moz-transform:rotate3d(1,1,0,15deg);
-		-ms-transform:rotate3d(1,1,0,15deg);
-		-o-transform:rotate3d(1,1,0,15deg);
-		transform:rotate3d(1,1,0,15deg);
+		-webkit-transform:rotate3d(1,1,0,5deg);
+		-moz-transform:rotate3d(1,1,0,5deg);
+		-ms-transform:rotate3d(1,1,0,5deg);
+		-o-transform:rotate3d(1,1,0,5deg);
+		transform:rotate3d(1,1,0,5deg);
 	}
+
+
 	/* View Right */
 	.view-rotate .main{
 		-webkit-transition-duration:5s;
@@ -470,7 +523,56 @@ s
 	}
 
 
+.page-flip{
+	z-index: 50;
 
+	-webkit-transform-style:preserve-3d;
+		-moz-transform-style:preserve-3d;
+		-ms-transform-style:preserve-3d;
+		-o-transform-style:preserve-3d;
+		transform-style:preserve-3d;
+
+	-webkit-transition-duration: .5s;
+		-moz-transition-duration: .5s;
+		-ms-transition-duration: .5s;
+		-o-transition-duration: .5s;
+		transition-duration: .5s;
+
+	-webkit-transform-origin: 0% 0%;
+		-moz-transform-origin: -100% 0%;
+		-ms-transform-origin: -100% 0%;
+		-o-transform-origin: -100% 0%;
+		transform-origin: -100% 0%;
+
+	-webkit-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-ms-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+
+/*		-webkit-transform:translate3d(-50%,0,0);
+		-moz-transform:translate3d(50%,0,0);
+		-ms-transform:translate3d(50%,0,0);
+		-o-transform:translate3d(50%,0,0);
+		transform:translate3d(50%,0,0);*/
+
+}
+
+.page-flip .book-page-back{
+
+		-webkit-transform:translate3d(0,-8px,-5px) rotate3d(0,1,0, 180deg);
+		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
+		-ms-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
+		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
+		transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
+
+/*		-webkit-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-ms-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
+		transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);*/
+
+}
 
 
 
@@ -480,12 +582,25 @@ s
 		border: 1px solid black;
 	}
 
+	.right, .left{
+		visibility: hidden;
+
+	}
+
+	.left{
+		position: fixed;
+		left: 0;
+	}
+
+	.right{
+		position: fixed;
+		right: 0;
+	}
+
 	.right img{
 		display: block;
 		margin: 10px auto;
-		/*margin: 20px;*/
 	}
-
 
 	.footer{
 		visibility: hidden;
