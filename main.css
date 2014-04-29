@@ -164,7 +164,7 @@ s
 		line-height:20px;
 		position:absolute; 
 		top:5px;
-		z-index:9;
+		/*z-index:9;*/
 		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
 		-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
@@ -214,9 +214,14 @@ s
 	}
 
 	#page-1{
+		/*z-index: 9;*/
 		background: #29303A url(Pages.jpg) 0 0 no-repeat;
 		background-size: 830px 550px;
 	}
+
+/*	#page-2{
+		z-index: 8;
+	}*/
 
 	.book-page-back{
 		background-color: #29303A;
@@ -524,7 +529,7 @@ s
 
 
 .page-flip{
-	z-index: 50;
+	/*z-index: 50;*/
 
 	-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
@@ -539,10 +544,10 @@ s
 		transition-duration: .5s;
 
 	-webkit-transform-origin: 0% 0%;
-		-moz-transform-origin: -100% 0%;
-		-ms-transform-origin: -100% 0%;
-		-o-transform-origin: -100% 0%;
-		transform-origin: -100% 0%;
+		-moz-transform-origin: 0% 0%;
+		-ms-transform-origin: 0% 0%;
+		-o-transform-origin: 0% 0%;
+		transform-origin: 0% 0%;
 
 	-webkit-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
@@ -550,15 +555,10 @@ s
 		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 		transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
 
-/*		-webkit-transform:translate3d(-50%,0,0);
-		-moz-transform:translate3d(50%,0,0);
-		-ms-transform:translate3d(50%,0,0);
-		-o-transform:translate3d(50%,0,0);
-		transform:translate3d(50%,0,0);*/
 
 }
 
-.page-flip .book-page-back{
+/*.page-flip .book-page-back*/ .visible-back-page{
 
 		-webkit-transform:translate3d(0,-8px,-5px) rotate3d(0,1,0, 180deg);
 		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
@@ -566,25 +566,27 @@ s
 		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
 		transform:translate3d(0,0,25px) rotate3d(0,1,0,160deg);
 
-/*		-webkit-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
-		-moz-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
-		-ms-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
-		-o-transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);
-		transform:translate3d(0,0,25px) rotate3d(0,1,0,-160deg);*/
+}
 
+/*#page-2-back{
+	-webkit-transform:translate3d(0,-8px,-6px);
+}*/
+
+#page-3-back{
+	/*-webkit-transform:translate3d(0,-8px,-7px);*/
+	z-index: -30;
+	
 }
 
 
 
 
-
-	.right, .left, .center{
+/*	.right, .left, .center{
 		border: 1px solid black;
-	}
+	}*/
 
 	.right, .left{
 		visibility: hidden;
-
 	}
 
 	.left{
