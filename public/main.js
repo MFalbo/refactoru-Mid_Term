@@ -41,21 +41,52 @@ bookArray.push(wildThings);
 bookArray.push(pooh);
 
 
+// Audio track and function construction
+
+	//Construct 'Wads' of desired audio tracks 
+	var track1 = new Wad({source: '/Title.wav', env:{hold: 1000, release: 0}});
+	var track2 = new Wad({source: '/Page_1.wav', env:{hold: 1000, release: 0}});
+	var track3 = new Wad({source: '/Page_2&3.wav', env:{hold:1000, release: 0}});
+	var track4 = new Wad({source: '/Page_3&4.wav', env:{hold:1000, release: 0}}); //Update track name to Page_4&5
+
+	// create and array of all audio tracks
+	var audioArray = [track1, track2, track3, track4];
+
+	// Play audio track function
+	var playAudio = function(track){
+		track.play();
+	}
+
+	// Stop audio track function
+	// audioArray.map(function(item){
+	// 	item.stop();
+	// })
+
+
 // All jQuery DOM construction and event handlers
 $(document).on('ready', function() {
 
 
-  // $(function(){
-  	// View Front Cover by clicking button
 	var book = $('#book');
+
+  	// View Front Cover by clicking button
 	$('#view-cover').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-cover');
+		$('.main').find('.book-page.page-flip').removeClass('page-flip');
+			book.removeClass().addClass('view-cover');
+
+		// Call audio track to be played
+		playAudio(audioArray[0]);
 	});
+
     // View Back Cover by clicking button
 	$('#view-back').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
+		$('.main').find('.book-page.page-flip').removeClass('page-flip');
+			book.removeClass().addClass('view-cover');
 		book.removeClass().addClass('view-back');
+		
 	});
 
 // Open/Close Book event handlers
@@ -75,14 +106,17 @@ $(document).on('ready', function() {
 
 	// Open book by clicking cover
 	$(document).on('click', '.book-cover', function(){
-		if ( book.attr('class') != 'open-book') {
+		// if ( book.attr('class') != 'open-book') {
 			$('#open-book').addClass('cur').siblings().removeClass('cur');
 			book.removeClass().addClass('open-book');
-		}else{
-			$('#open-book').removeClass('cur');
-			$('#view-cover').addClass('cur');
-			book.removeClass().addClass('view-cover');
-		}
+
+			// Call audio track to be played
+			playAudio(audioArray[1]);
+		// }else{
+		// 	$('#open-book').removeClass('cur');
+		// 	$('#view-cover').addClass('cur');
+		// 	book.removeClass().addClass('view-cover');
+		// }
 	});
 
 	// Go to previous page, or close book by clicking inside of front cover
@@ -90,15 +124,15 @@ $(document).on('ready', function() {
 	$(document).on('click', '.book-cover-back', function(){
 
 			if(($('.main').find('.book-page.page-flip')).length === 0){
-				if ( book.attr('class') != 'open-book') {
-					$('#open-book').addClass('cur').siblings().removeClass('cur');
-					book.removeClass().addClass('open-book');
-				}
-				else{
+				// if ( book.attr('class') != 'open-book') {
+				// 	$('#open-book').addClass('cur').siblings().removeClass('cur');
+				// 	book.removeClass().addClass('open-book');
+				// }
+				// else{
 					$('#open-book').removeClass('cur');
 					$('#view-cover').addClass('cur');
 					book.removeClass().addClass('view-cover');
-				}
+				// }
 			}
 
 			$('.main').find('.book-page.page-flip:first').removeClass('page-flip')
@@ -111,7 +145,11 @@ $(document).on('ready', function() {
 		$(this).addClass('page-flip');
 		$(this).find('.book-page-back').addClass('visible-back-page').css('visibility', 'visible');
 		$(this).siblings().find('.book-page-back').css('visibility', 'hidden');
-	
+
+		// Call audio track to be played
+		// Need to associate specific page clicks with specific audio tracks!!!!
+		playAudio(audioArray[2]);
+		
 	});
 
 
@@ -199,17 +237,14 @@ $('#view-rotate').click(function(){
 
 	});
 
-	// var playAudio = 
-	var track1 = new Wad({source: '/page_1.wav'});
-	track1.play();
-
 });
 
 
 
 
 
-
+// Need to find a way to stop audio tracks
+// Need a way to stop all audio tracks for everything except current page
 
 
 
