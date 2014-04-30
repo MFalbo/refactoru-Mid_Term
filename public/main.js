@@ -43,42 +43,41 @@ bookArray.push(pooh);
 
 // Audio track and function construction
 
-	//Construct 'Wads' of desired audio tracks 
-	var track1 = new Wad({source: '/Title.wav', env:{hold: 1000, release: 0}});
-	var track2 = new Wad({source: '/Page_1.wav', env:{hold: 1000, release: 0}});
-	var track3 = new Wad({source: '/Page_2&3.wav', env:{hold:1000, release: 0}});
-	var track4 = new Wad({source: '/Page_4&5.wav', env:{hold:1000, release: 0}});
+//Construct 'Wads' of desired audio tracks 
+var track1 = new Wad({source: '/Title.wav', env:{hold: 1000, release: 0}});
+var track2 = new Wad({source: '/Page_1.wav', env:{hold: 1000, release: 0}});
+var track3 = new Wad({source: '/Page_2&3.wav', env:{hold:1000, release: 0}});
+var track4 = new Wad({source: '/Page_4&5.wav', env:{hold:1000, release: 0}});
 
-	// create and array of all audio tracks
-	var audioArray = [track1, track2, track3, track4];
+// create and array of all audio tracks
+var audioArray = [track1, track2, track3, track4];
 
-	// Play audio track function
-	var playAudio = function(track){
-		// for(var i=0; i<audioArray.length; i++){
-		// 	if(audioArray[i].gain){
-		// 		audioArray[i].stop();
-		// 	}
-		// }
-		stopAudio();
-		if(typeof track !== "undefined"){
-			track.play({wait: 0.5});
+// Play audio track function
+var playAudio = function(track){
+	// for(var i=0; i<audioArray.length; i++){
+	// 	if(audioArray[i].gain){
+	// 		audioArray[i].stop();
+	// 	}
+	// }
+	stopAudio();
+	if(typeof track !== "undefined"){
+		track.play({wait: 0.5});
+	}
+};
+
+// Stop audio track function
+var stopAudio = function(){
+	for(var i=0; i<audioArray.length; i++){
+		if(audioArray[i].gain){
+			audioArray[i].stop();
 		}
-	};
-
-	// Stop audio track function
-	var stopAudio = function(){
-		for(var i=0; i<audioArray.length; i++){
-			if(audioArray[i].gain){
-				audioArray[i].stop();
-			}
-		}
-	};
+	}
+};
 
 
 
 // All jQuery DOM construction and event handlers
 $(document).on('ready', function() {
-
 
 	var book = $('#book');
 
@@ -103,9 +102,7 @@ $(document).on('ready', function() {
 		$(this).addClass('cur').siblings().removeClass('cur');
 		unflipPages();
 		book.removeClass().addClass('view-back');
-
 		stopAudio();
-		
 	});
 
 // Open/Close Book event handlers
@@ -115,7 +112,8 @@ $(document).on('ready', function() {
 		if ( book.attr('class') != 'open-book') {
 			$(this).addClass('cur').siblings().removeClass('cur');
 			book.removeClass().addClass('open-book');
-		}else{
+		}
+		else{
 			$(this).removeClass('cur');
 			$('#view-cover').addClass('cur');
 			unflipPages();
@@ -125,34 +123,32 @@ $(document).on('ready', function() {
 
 	// Open book by clicking cover
 	$(document).on('click', '.book-cover', function(){
-		// if ( book.attr('class') != 'open-book') {
-			$('#open-book').addClass('cur').siblings().removeClass('cur');
-			book.removeClass().addClass('open-book');
+		$('#open-book').addClass('cur').siblings().removeClass('cur');
+		book.removeClass().addClass('open-book');
 
-			// Call audio track to be played
-			playAudio(audioArray[1]);
+		// Call audio track to be played
+		playAudio(audioArray[1]);
 	});
 
 	// Go to previous page, or close book by clicking inside of front cover
 	// Not ideal, but functional for now
 	$(document).on('click', '.book-cover-back', function(){
 
-			// Determine if there are no currently flipped pages, and if so, close book cover
-			if(($('.main').find('.book-page.page-flip')).length === 0){
-					$('#open-book').removeClass('cur');
-					$('#view-cover').addClass('cur');
-					book.removeClass().addClass('view-cover');
-			}
+		// Determine if there are no currently flipped pages, and if so, close book cover
+		if(($('.main').find('.book-page.page-flip')).length === 0){
+			$('#open-book').removeClass('cur');
+			$('#view-cover').addClass('cur');
+			book.removeClass().addClass('view-cover');
+		}
 
-			// Retrieve value of page's data-id attribute and convert it to a number to correlate with pages track index in audioArray
-			var curTrack = +$('.main').find('.book-page.page-flip:first').attr('data-id');
-			// Call audio track to be played
-			playAudio(audioArray[curTrack]);
-			// console.log(curTrack);
+		// Retrieve value of page's data-id attribute and convert it to a number to correlate with pages track index in audioArray
+		var curTrack = +$('.main').find('.book-page.page-flip:first').attr('data-id');
+		// Call audio track to be played
+		playAudio(audioArray[curTrack]);
 
-			// Locate previous page and remove 'page-flip' class in order to reset page to un-flipped position
-			$('.main').find('.book-page.page-flip:first').removeClass('page-flip')
-			.next().children('.book-page-back').css('visibility', 'visible');
+		// Locate previous page and remove 'page-flip' class in order to reset page to un-flipped position
+		$('.main').find('.book-page.page-flip:first').removeClass('page-flip')
+		.next().children('.book-page-back').css('visibility', 'visible');
 	});
 
 	// Flip page when clicked on
@@ -171,43 +167,41 @@ $(document).on('ready', function() {
 	});
 
 
-// Rotate book 360 degrees when button is clicked
-$('#view-rotate').click(function(){
+	// Rotate book 360 degrees when button is clicked
+	$('#view-rotate').click(function(){
 		unflipPages();
 		stopAudio();
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-rotate');
 	});
-// });
+
+	// Pop-up footer event handler.  NEEDS TO BE IMPROVED WHEN PAGE IS IN COLLAPSED STATE, perhaps with a media query
+	$(document).on('mousemove', function(e){
+	  	if(e.pageY > $(window).height()*.95){
+	  		$('.footer').css('visibility', 'visible');
+	  	}
+	  	else{
+	  		$('.footer').css('visibility', 'hidden');
+	  	}
+	});
 
 
-// Pop-up footer event handler.  NEEDS TO BE IMPROVED WHEN PAGE IS IN COLLAPSED STATE, perhaps with a media query
- $(document).on('mousemove', function(e){
-  	if(e.pageY > $(window).height()*.95){
-  		$('.footer').css('visibility', 'visible');
-  	}
-  	else{
-  		$('.footer').css('visibility', 'hidden');
-  	}
-  });
+	// Pop-up sidebars.  Sizing and placement, especially in collapsed states needs work
+	$(document).on('mousemove', function(e){
+
+	  	if((e.pageX > $(window).width()*.87) && (e.pageY < $(window).height()*.95)){
+	  		$('.right').css('visibility', 'visible');
+	  	}
+	  	// else if((e.pageX < $(window).width()*.15) && (e.pageY < $(window).height()*.95)){
+	  	// 	$('.left').css('visibility', 'visible');
+	  	// }
+	  	else{
+	  		$('.left, .right').css('visibility', 'hidden');
+	  	}
+	});
 
 
-// Pop-up sidebars.  Sizing and placement, especially in collapsed states needs work
-  $(document).on('mousemove', function(e){
-
-  	if((e.pageX > $(window).width()*.87) && (e.pageY < $(window).height()*.95)){
-  		$('.right').css('visibility', 'visible');
-  	}
-  	else if((e.pageX < $(window).width()*.15) && (e.pageY < $(window).height()*.95)){
-  		$('.left').css('visibility', 'visible');
-  	}
-  	else{
-  		$('.left, .right').css('visibility', 'hidden');
-  	}
-  });
-
-
-  // search function
+	// search function
 	var search = function(criteria){
 		var searchArray = [];
 	  	for(var i=0; i < bookArray.length; i++){
@@ -224,8 +218,8 @@ $('#view-rotate').click(function(){
 	  	return searchArray;
 	};
 
-  // display search results in a modal.   ROOM FOR DISPLAY IMPROVEMENTS
-  var searchModal = function(arr){
+	// display search results in a modal.   ROOM FOR DISPLAY IMPROVEMENTS
+	var searchModal = function(arr){
 	  	$('.modal-body').empty();
 	  	arr.map(function(obj){
 	  		for(var key in obj){
@@ -256,13 +250,28 @@ $('#view-rotate').click(function(){
 
 	});
 
+
+	// Thumbnail Scroll Bar Event Handlers.  NOT FUNCTIONAL.
+	$('#scroll-down').on('mouseover', function(){
+		$('.right img').css('top', '-20px');
+	});
+
+	$('#scroll-up').on('mouseover', function(){
+		$('.right img').css('top', '20px');
+
+	});
 });
 
 
 
 
-
-
+// TO DO
+// Change search so that when a displayed book title is selected it brings the user to the page of that book
+// Improve the formatting of displayed search results
+// Move playing of title track away from the 'view cover' button
+// Add inside back cover
+// Create functional thumbnail scroll bar in right column
+// Import pictures to img tags in right column
 
 
 

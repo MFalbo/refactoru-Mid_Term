@@ -534,14 +534,43 @@
 	visibility: hidden;
 }
 
-.left{
+/*.left{
 	position: fixed;
 	left: 0;
-}
+}*/
 
 .right{
 	position: fixed;
 	right: 0;
+	height: 90%;
+	/*overflow: hidden;*/
+}
+
+#scroll-up{
+	position: absolute;
+	top:20px;
+	width: 100%;
+	height: 50px;
+	background: url('http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-media/001663-ultra-glossy-silver-button-icon-media-media2-arrow-up.png') 0 0 no-repeat;
+	background-size: 100% 50px;
+	opacity: 0.5;
+}
+
+#scroll-down{
+	position: absolute;
+	bottom:20px;
+	width: 100%;
+	height: 50px;
+	background: url('http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-media/001662-ultra-glossy-silver-button-icon-media-media2-arrow-down.png') 0 0 no-repeat;
+	background-size: 100% 50px;
+	opacity: 0.5;
+}
+
+#thumbnail-container{
+	/*position: absolute;*/
+	margin: 80px 0 10px 0;
+	height: 73%;
+	overflow: hidden;
 }
 
 .right img{
