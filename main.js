@@ -44,14 +44,15 @@ bookArray.push(pooh);
 // All jQuery DOM construction and event handlers
 $(document).on('ready', function() {
 
-  // View Front Cover by clicking button
+
   // $(function(){
+  	// View Front Cover by clicking button
 	var book = $('#book');
 	$('#view-cover').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-cover');
 	});
-	
+    // View Back Cover by clicking button
 	$('#view-back').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-back');
@@ -136,10 +137,10 @@ $('#view-rotate').click(function(){
 // Pop-up sidebars.  Sizing and placement, especially in collapsed states needs work
   $(document).on('mousemove', function(e){
 
-  	if((e.pageX > $(window).width()*.90) && (e.pageY < $(window).height()*.95)){
+  	if((e.pageX > $(window).width()*.87) && (e.pageY < $(window).height()*.95)){
   		$('.right').css('visibility', 'visible');
   	}
-  	else if((e.pageX < $(window).width()*.1) && (e.pageY < $(window).height()*.95)){
+  	else if((e.pageX < $(window).width()*.15) && (e.pageY < $(window).height()*.95)){
   		$('.left').css('visibility', 'visible');
   	}
   	else{
@@ -197,6 +198,11 @@ $('#view-rotate').click(function(){
 		$('#myModal').modal('show');
 
 	});
+
+	var playAudio = 
+	// var track1 = new Wad({source: 'page_1.wav'});
+	// track1.play();
+
 });
 
 
