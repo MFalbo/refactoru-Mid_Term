@@ -54,23 +54,26 @@ bookArray.push(pooh);
 
 	// Play audio track function
 	var playAudio = function(track){
+		// for(var i=0; i<audioArray.length; i++){
+		// 	if(audioArray[i].gain){
+		// 		audioArray[i].stop();
+		// 	}
+		// }
+		stopAudio();
+		if(typeof track !== "undefined"){
+			track.play({wait: 0.5});
+		}
+	};
+
+	// Stop audio track function
+	var stopAudio = function(){
 		for(var i=0; i<audioArray.length; i++){
 			if(audioArray[i].gain){
 				audioArray[i].stop();
 			}
 		}
+	};
 
-		if(typeof track !== "undefined"){
-			track.play({wait: 0.5});
-		}
-	}
-
-
-
-	// Stop audio track function
-	// audioArray.map(function(item){
-	// 	item.stop();
-	// })
 
 
 // All jQuery DOM construction and event handlers
@@ -79,13 +82,18 @@ $(document).on('ready', function() {
 
 	var book = $('#book');
 
+	// Reset all pages to original position.  Called whenever the book is closed.
+	var unflipPages = function(){
+		$('.main').find('.book-page.page-flip').removeClass('page-flip');
+			book.removeClass().addClass('view-cover');
+	};
+
   	// View Front Cover by clicking button
 	$('#view-cover').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
+		unflipPages();
 		book.removeClass().addClass('view-cover');
-		$('.main').find('.book-page.page-flip').removeClass('page-flip');
-			book.removeClass().addClass('view-cover');
-
+		
 		// Call audio track to be played
 		playAudio(audioArray[0]);
 	});
@@ -93,9 +101,10 @@ $(document).on('ready', function() {
     // View Back Cover by clicking button
 	$('#view-back').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
-		$('.main').find('.book-page.page-flip').removeClass('page-flip');
-			book.removeClass().addClass('view-cover');
+		unflipPages();
 		book.removeClass().addClass('view-back');
+
+		stopAudio();
 		
 	});
 
@@ -109,8 +118,8 @@ $(document).on('ready', function() {
 		}else{
 			$(this).removeClass('cur');
 			$('#view-cover').addClass('cur');
-			$('.main').find('.book-page.page-flip').removeClass('page-flip');
-			book.removeClass().addClass('view-cover');
+			unflipPages();
+			stopAudio();
 		}
 	});
 
@@ -164,6 +173,8 @@ $(document).on('ready', function() {
 
 // Rotate book 360 degrees when button is clicked
 $('#view-rotate').click(function(){
+		unflipPages();
+		stopAudio();
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-rotate');
 	});
@@ -226,7 +237,7 @@ $('#view-rotate').click(function(){
 
   
   	// Search through 'database' of books using search bar and display results in a modal box
-	  $(document).on('submit', '#search-bar', function(){
+	$(document).on('submit', '#search-bar', function(){
 	  	var criteria = $(this).find('#search-field').val()
 	  	var results = search(criteria);
 		searchModal(results);
@@ -234,9 +245,9 @@ $('#view-rotate').click(function(){
 		$('#myModal').modal('show');
 
 	  	return false;
-	  });
+	});
 
-	  // Do new search based off of clicked data in original search modal box
+	// Do new search based off of clicked data in original search modal box
 	$(document).on('click','.search-criteria', function(){
 		var newCriteria = $(this).text();
 		var results = search(newCriteria);
@@ -251,8 +262,7 @@ $('#view-rotate').click(function(){
 
 
 
-// Create a separate 'unflip all pages' function that gets called on any button clicks or when the front cover is closed
-// Create a separate 'stop audio' function that can be called within play audio loop, or whenever the book is closed
+
 
 
 
