@@ -47,15 +47,25 @@ bookArray.push(pooh);
 	var track1 = new Wad({source: '/Title.wav', env:{hold: 1000, release: 0}});
 	var track2 = new Wad({source: '/Page_1.wav', env:{hold: 1000, release: 0}});
 	var track3 = new Wad({source: '/Page_2&3.wav', env:{hold:1000, release: 0}});
-	var track4 = new Wad({source: '/Page_3&4.wav', env:{hold:1000, release: 0}}); //Update track name to Page_4&5
+	var track4 = new Wad({source: '/Page_4&5.wav', env:{hold:1000, release: 0}});
 
 	// create and array of all audio tracks
 	var audioArray = [track1, track2, track3, track4];
 
 	// Play audio track function
 	var playAudio = function(track){
-		track.play();
+		for(var i=0; i<audioArray.length; i++){
+			if(audioArray[i].gain){
+				audioArray[i].stop();
+			}
+		}
+
+		if(typeof track !== "undefined"){
+			track.play({wait: 0.5});
+		}
 	}
+
+
 
 	// Stop audio track function
 	// audioArray.map(function(item){
@@ -112,29 +122,26 @@ $(document).on('ready', function() {
 
 			// Call audio track to be played
 			playAudio(audioArray[1]);
-		// }else{
-		// 	$('#open-book').removeClass('cur');
-		// 	$('#view-cover').addClass('cur');
-		// 	book.removeClass().addClass('view-cover');
-		// }
 	});
 
 	// Go to previous page, or close book by clicking inside of front cover
 	// Not ideal, but functional for now
 	$(document).on('click', '.book-cover-back', function(){
 
+			// Determine if there are no currently flipped pages, and if so, close book cover
 			if(($('.main').find('.book-page.page-flip')).length === 0){
-				// if ( book.attr('class') != 'open-book') {
-				// 	$('#open-book').addClass('cur').siblings().removeClass('cur');
-				// 	book.removeClass().addClass('open-book');
-				// }
-				// else{
 					$('#open-book').removeClass('cur');
 					$('#view-cover').addClass('cur');
 					book.removeClass().addClass('view-cover');
-				// }
 			}
 
+			// Retrieve value of page's data-id attribute and convert it to a number to correlate with pages track index in audioArray
+			var curTrack = +$('.main').find('.book-page.page-flip:first').attr('data-id');
+			// Call audio track to be played
+			playAudio(audioArray[curTrack]);
+			// console.log(curTrack);
+
+			// Locate previous page and remove 'page-flip' class in order to reset page to un-flipped position
 			$('.main').find('.book-page.page-flip:first').removeClass('page-flip')
 			.next().children('.book-page-back').css('visibility', 'visible');
 	});
@@ -146,9 +153,11 @@ $(document).on('ready', function() {
 		$(this).find('.book-page-back').addClass('visible-back-page').css('visibility', 'visible');
 		$(this).siblings().find('.book-page-back').css('visibility', 'hidden');
 
+		// Retrieve value of page's data-id attribute and convert it to a number to correlate with pages track index in audioArray
+		var curTrack = +$(this).attr('data-id');
+		
 		// Call audio track to be played
-		// Need to associate specific page clicks with specific audio tracks!!!!
-		playAudio(audioArray[2]);
+		playAudio(audioArray[curTrack+1]);
 		
 	});
 
@@ -161,7 +170,7 @@ $('#view-rotate').click(function(){
 // });
 
 
-// Pop-up footer event handler
+// Pop-up footer event handler.  NEEDS TO BE IMPROVED WHEN PAGE IS IN COLLAPSED STATE, perhaps with a media query
  $(document).on('mousemove', function(e){
   	if(e.pageY > $(window).height()*.95){
   		$('.footer').css('visibility', 'visible');
@@ -199,7 +208,6 @@ $('#view-rotate').click(function(){
 	  				searchArray.push(bookArray[i]);
 	  				// console.log(bookArray[i]);
 	  			}
-
 	  		} 
 	  	}
 	  	return searchArray;
@@ -243,8 +251,8 @@ $('#view-rotate').click(function(){
 
 
 
-// Need to find a way to stop audio tracks
-// Need a way to stop all audio tracks for everything except current page
+// Create a separate 'unflip all pages' function that gets called on any button clicks or when the front cover is closed
+// Create a separate 'stop audio' function that can be called within play audio loop, or whenever the book is closed
 
 
 
