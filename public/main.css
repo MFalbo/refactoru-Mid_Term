@@ -526,11 +526,6 @@
 	visibility: hidden;
 }
 
-/*.left{
-	position: fixed;
-	left: 0;
-}*/
-
 .right{
 	position: fixed;
 	right: 0;
@@ -574,6 +569,16 @@
 	display: block;
 	margin: 10px auto;
 	margin-right: 10px;
+}
+
+.search-title{
+	color: #000;
+}
+
+.search-title:hover{
+	text-decoration: none;
+	color: #000;
+	font-size: 1.2em;
 }
 
 @media (min-width: 768px){

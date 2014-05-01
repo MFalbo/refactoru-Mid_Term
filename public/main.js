@@ -1,10 +1,11 @@
-// Class Constructors
+// --------------------------------------------------------Class Constructors
 var Book = function(title, author, genre){
 	this.title = title;
 	this.author = author;
 	this.genre = genre;
 }
 
+// --------------------------------------------------------Data Construction
 // Initialize empty book array
 var bookArray = [];
 
@@ -40,8 +41,7 @@ bookArray.push(hungryCaterpillar);
 bookArray.push(wildThings);
 bookArray.push(pooh);
 
-
-// Audio track and function construction
+// ----------------------------------Audio track and function construction------------------------
 
 //Construct 'Wads' of desired audio tracks 
 var track1 = new Wad({source: '/Title.wav', env:{hold: 1000, release: 0}});
@@ -54,11 +54,6 @@ var audioArray = [track1, track2, track3, track4];
 
 // Play audio track function
 var playAudio = function(track){
-	// for(var i=0; i<audioArray.length; i++){
-	// 	if(audioArray[i].gain){
-	// 		audioArray[i].stop();
-	// 	}
-	// }
 	stopAudio();
 	if(typeof track !== "undefined"){
 		track.play({wait: 0.5});
@@ -75,8 +70,7 @@ var stopAudio = function(){
 };
 
 
-
-// All jQuery DOM construction and event handlers
+// --------------------------------------All jQuery DOM construction and event handlers-------------------------
 $(document).on('ready', function() {
 
 	var book = $('#book');
@@ -164,7 +158,6 @@ $(document).on('ready', function() {
 		
 	});
 
-
 	// Rotate book 360 degrees when button is clicked
 	$('#view-rotate').click(function(){
 		unflipPages();
@@ -195,7 +188,6 @@ $(document).on('ready', function() {
 	  	}
 	});
 
-
 	// Pop-up sidebars.  Sizing and placement, especially in collapsed states needs work
 	$(document).on('mousemove', function(e){
 
@@ -210,18 +202,13 @@ $(document).on('ready', function() {
 	  	}
 	});
 
-
 	// search function
 	var search = function(criteria){
 		var searchArray = [];
 	  	for(var i=0; i < bookArray.length; i++){
-	  		// console.log($(this).find('#search-field').val().toLowerCase());
-	  		// console.log(bookArray[i]);
 	  		for(var key in bookArray[i]){
-	  			// console.log(bookArray[i][key]);
 	  			if(bookArray[i][key].toLowerCase() === criteria.toLowerCase()){
 	  				searchArray.push(bookArray[i]);
-	  				// console.log(bookArray[i]);
 	  			}
 	  		} 
 	  	}
@@ -231,15 +218,20 @@ $(document).on('ready', function() {
 	// display search results in a modal.   ROOM FOR DISPLAY IMPROVEMENTS
 	var searchModal = function(arr){
 	  	$('.modal-body').empty();
+	  			var bookNum = 1;
 	  	arr.map(function(obj){
+	  		var bookNumDisp = $('<h4 class="bg-info"><a class="search-title" href="#">' + obj['title'] + '</a></h4>');
+	  		$('.modal-body').append(bookNumDisp);
 	  		for(var key in obj){
-	  			var prop = $('<h5>' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h5>');
-	  			$('.modal-body').append(prop);
+	  			if(key !== 'title'){
+		  			var prop = $('<h5 class="bg-warning">' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h5>');
+		  			$('.modal-body').append(prop);
+	  			}
 	  		}
+	  		bookNum++;
 	  	});
   	};
 
-  
   	// Search through 'database' of books using search bar and display results in a modal box
 	$(document).on('submit', '#search-bar', function(){
 	  	var criteria = $(this).find('#search-field').val()
@@ -259,7 +251,6 @@ $(document).on('ready', function() {
 		$('#myModal').modal('show');
 
 	});
-
 
 	// Thumbnail Scrollbar Code
 	var pos = 0;
@@ -312,7 +303,6 @@ $(document).on('ready', function() {
 // TO DO
 // Change search so that when a displayed book title is selected it brings the user to the page of that book
 // Improve the formatting of displayed search results
-// Move playing of title track away from the 'view cover' button
 // Add inside back cover
 
 
