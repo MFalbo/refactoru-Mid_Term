@@ -133,6 +133,7 @@
 		position:absolute; 
 		top:5px;
 		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
+
 		-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
 		-ms-transform-style:preserve-3d;
@@ -205,6 +206,7 @@
 		position:absolute; 
 		top:5px;
 		box-shadow:inset 3px 0 10px rgba(0,0,0,0.1);
+
 		-webkit-transform-style:preserve-3d;
 		-moz-transform-style:preserve-3d;
 		-ms-transform-style:preserve-3d;
@@ -223,7 +225,7 @@
 		-o-transform:translate3d(0,0,24px);
 		transform:translate3d(0,0,24px);
 
-		-webkit-transform:rotate3d(0,1,0,-160deg);
+		-webkit-transform:rotate3d(0,1,0,-180deg);
 		-moz-transform:rotate3d(0,1,0,-180deg);
 		-ms-transform:rotate3d(0,1,0,-180deg);
 		-o-transform:rotate3d(0,1,0,-180deg);
@@ -249,16 +251,6 @@
 		-o-transform:rotate3d(0,1,0,-180deg) translate3d(0,0,25px);
 		transform:rotate3d(0,1,0,-180deg) translate3d(0,0,25px);
 		z-index:8;
-	}
-	.book-back .description{
-		font-size:14px;
-		line-height:20px;
-		margin-top:50px;
-		padding:10px 20px 10px 30px;
-		background:rgba(255,255,255,0.1);
-	}
-	.book-back p{
-		padding:5px 0;
 	}
 
 /* = Book Bone

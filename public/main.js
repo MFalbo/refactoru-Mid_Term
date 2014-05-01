@@ -253,58 +253,47 @@ $(document).on('ready', function() {
 
 	});
 
-	console.log($('.shifting-container').height());
-	console.log($('#thumbnail-container').height());
 
+	// Thumbnail Scrollbar Code
 	var pos = 0;
 	var interval;	
-	// Thumbnail Scroll Bar Event Handlers.  NOT FUNCTIONAL.
+	// Thumbnail Scroll Bar Event Handlers.
+
+	// Scroll thumbnails down and stop when top thumbnail is at position 0
 	$('#scroll-up').on('mouseenter', function(){
-		// var bottomLimit = $('.shifting-container').height() - ($('#thumbnail-container').height());
-		// console.log(bottomLimit);
-		// console.log(pos);
 		
 		interval = setInterval(function(){
 			if(pos >= 0){
 				clearInterval(interval);	
 			}
 			else{
-				console.log('hover interval');
 				$('.shifting-container').css('top', pos + 'px');
 				pos+=2;
 			}
 		}, 10);
 	});
 
+	// Stop Scrolling when mouse is no longer hovering over up arrow
 	$('#scroll-up').on('mouseleave', function(){
 		clearInterval(interval);	
 	});
 
+	// Scroll thumbnails up and stop when the bottom of the shifting-container is at the middle of the thumbnail container
 	$('#scroll-down').on('mouseenter', function(){
 		var bottomLimit = $('.shifting-container').height() - ($('#thumbnail-container').height()/2);
-		console.log(bottomLimit);
-		console.log(pos);
 		
 		interval = setInterval(function(){
 			if(pos <= -bottomLimit){
 				clearInterval(interval);	
 			}
 			else{
-				console.log('hover interval');
 				$('.shifting-container').css('top', pos + 'px');
 				pos-=2;
 			}
 		}, 10);
 	});
 
-	// $('#scroll-up').on('mouseenter', function(){
-	// 	interval = setInterval(function(){
-	// 					console.log('hover interval');
-	// 					$('.shifting-container').css('top', pos + 'px');
-	// 					pos--;
-	// 				}, 10);
-	// });
-
+	// Stop Scrolling when mouse is no longer hovering over down arrow
 	$('#scroll-down').on('mouseleave', function(){
 		clearInterval(interval);	
 	});
@@ -318,8 +307,6 @@ $(document).on('ready', function() {
 // Improve the formatting of displayed search results
 // Move playing of title track away from the 'view cover' button
 // Add inside back cover
-// Create functional thumbnail scroll bar in right column
-// Import pictures to img tags in right column
 
 
 
