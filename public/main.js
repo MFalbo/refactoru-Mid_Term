@@ -91,10 +91,8 @@ $(document).on('ready', function() {
 	$('#view-cover').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
 		unflipPages();
+		stopAudio();
 		book.removeClass().addClass('view-cover');
-		
-		// Call audio track to be played
-		playAudio(audioArray[0]);
 	});
 
     // View Back Cover by clicking button
@@ -173,6 +171,15 @@ $(document).on('ready', function() {
 		stopAudio();
 		$(this).addClass('cur').siblings().removeClass('cur');
 		book.removeClass().addClass('view-rotate');
+	});
+
+	$('#play-title').click(function(){
+		$(this).addClass('cur').siblings().removeClass('cur');
+		book.removeClass().addClass('view-cover');
+
+		// Call audio track to be played
+		playAudio(audioArray[0]);
+
 	});
 
 	// Pop-up footer event handler.  NEEDS TO BE IMPROVED WHEN PAGE IS IN COLLAPSED STATE, perhaps with a media query
