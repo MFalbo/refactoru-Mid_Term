@@ -177,6 +177,7 @@ $(document).on('ready', function() {
 
 	$('#play-title').click(function(){
 		$(this).addClass('cur').siblings().removeClass('cur');
+		unflipPages();
 		book.removeClass().addClass('view-cover');
 
 		// Call audio track to be played
