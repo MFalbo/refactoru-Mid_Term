@@ -177,7 +177,10 @@ $(document).on('ready', function() {
 
 	// Pop-up footer event handler.  NEEDS TO BE IMPROVED WHEN PAGE IS IN COLLAPSED STATE, perhaps with a media query
 	$(document).on('mousemove', function(e){
-	  	if(e.pageY > $(window).height()*.95){
+	  	if($(window).width() < 768){
+		  	$('.footer').css('visibility', 'visible');
+	  	}
+		else if(e.pageY > $(window).height()*.95){
 	  		$('.footer').css('visibility', 'visible');
 	  	}
 	  	else{
@@ -250,15 +253,60 @@ $(document).on('ready', function() {
 
 	});
 
+	console.log($('.shifting-container').height());
+	console.log($('#thumbnail-container').height());
 
+	var pos = 0;
+	var interval;	
 	// Thumbnail Scroll Bar Event Handlers.  NOT FUNCTIONAL.
-	$('#scroll-down').on('mouseover', function(){
-		$('.right img').css('top', '-20px');
+	$('#scroll-up').on('mouseenter', function(){
+		// var bottomLimit = $('.shifting-container').height() - ($('#thumbnail-container').height());
+		// console.log(bottomLimit);
+		// console.log(pos);
+		
+		interval = setInterval(function(){
+			if(pos >= 0){
+				clearInterval(interval);	
+			}
+			else{
+				console.log('hover interval');
+				$('.shifting-container').css('top', pos + 'px');
+				pos+=2;
+			}
+		}, 10);
 	});
 
-	$('#scroll-up').on('mouseover', function(){
-		$('.right img').css('top', '20px');
+	$('#scroll-up').on('mouseleave', function(){
+		clearInterval(interval);	
+	});
 
+	$('#scroll-down').on('mouseenter', function(){
+		var bottomLimit = $('.shifting-container').height() - ($('#thumbnail-container').height()/2);
+		console.log(bottomLimit);
+		console.log(pos);
+		
+		interval = setInterval(function(){
+			if(pos <= -bottomLimit){
+				clearInterval(interval);	
+			}
+			else{
+				console.log('hover interval');
+				$('.shifting-container').css('top', pos + 'px');
+				pos-=2;
+			}
+		}, 10);
+	});
+
+	// $('#scroll-up').on('mouseenter', function(){
+	// 	interval = setInterval(function(){
+	// 					console.log('hover interval');
+	// 					$('.shifting-container').css('top', pos + 'px');
+	// 					pos--;
+	// 				}, 10);
+	// });
+
+	$('#scroll-down').on('mouseleave', function(){
+		clearInterval(interval);	
 	});
 });
 

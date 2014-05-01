@@ -547,8 +547,9 @@
 }
 
 #scroll-up{
-	position: absolute;
-	top:20px;
+	display: block;
+	/*position: absolute;*/
+	/*top:20px;*/
 	width: 100%;
 	height: 50px;
 	background: url('http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-media/001663-ultra-glossy-silver-button-icon-media-media2-arrow-up.png') 0 0 no-repeat;
@@ -557,8 +558,7 @@
 }
 
 #scroll-down{
-	position: absolute;
-	bottom:20px;
+	display: block;
 	width: 100%;
 	height: 50px;
 	background: url('http://etc-mysitemyway.s3.amazonaws.com/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-media/001662-ultra-glossy-silver-button-icon-media-media2-arrow-down.png') 0 0 no-repeat;
@@ -567,20 +567,34 @@
 }
 
 #thumbnail-container{
-	/*position: absolute;*/
-	margin: 80px 0 10px 0;
+	min-width: 100px;
+	min-height: 100px;
+	margin-bottom: 10px;
 	height: 73%;
 	overflow: hidden;
 }
 
-.right img{
+.shifting-container{
+	position: relative;
+}
+
+.thumbnail{
 	display: block;
 	margin: 10px auto;
+	margin-right: 10px;
+}
+
+@media (min-width: 768px){
+	.footer{
+		visibility: visible;
+	}
 }
 
 .footer{
 	visibility: hidden;
 }
+
+
 
 /*Copyright for basic 3D book structure*/
 /*!
