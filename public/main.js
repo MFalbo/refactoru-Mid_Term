@@ -4,6 +4,15 @@ var Book = function(title, author, genre){
 	this.author = author;
 	this.genre = genre;
 }
+Book.prototype.match = function(criteria) {
+	for(var key in this){
+		if(typeof this[key] === 'function'){continue}
+		if(this[key].toLowerCase().indexOf(criteria.toLowerCase()) > -1){
+			return true;
+		}
+	}
+	return false;
+};
 
 // --------------------------------------------------------Data Construction
 // Initialize empty book array
@@ -206,11 +215,9 @@ $(document).on('ready', function() {
 	var search = function(criteria){
 		var searchArray = [];
 	  	for(var i=0; i < bookArray.length; i++){
-	  		for(var key in bookArray[i]){
-	  			if(bookArray[i][key].toLowerCase() === criteria.toLowerCase()){
-	  				searchArray.push(bookArray[i]);
-	  			}
-	  		} 
+  			if(bookArray[i].match(criteria)){
+  				searchArray.push(bookArray[i]);
+			}
 	  	}
 	  	return searchArray;
 	};
@@ -223,10 +230,9 @@ $(document).on('ready', function() {
 	  		var bookNumDisp = $('<h4 class="bg-info"><a class="search-title" href="#">' + obj['title'] + '</a></h4>');
 	  		$('.modal-body').append(bookNumDisp);
 	  		for(var key in obj){
-	  			if(key !== 'title'){
+	  			if(typeof obj[key] === 'function' || key === 'title'){continue}
 		  			var prop = $('<h5 class="bg-warning">' + key.toUpperCase() + ': <a class="search-criteria" href="#">' + obj[key] + '</a></h5>');
 		  			$('.modal-body').append(prop);
-	  			}
 	  		}
 	  		bookNum++;
 	  	});
